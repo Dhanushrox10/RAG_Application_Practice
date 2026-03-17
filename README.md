@@ -54,35 +54,11 @@ cd <your-repo-name>
 pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Usage
-
-### 1. Add PDFs
-
-Place your PDF files inside the `data/` directory.
-
-### 2. Run Ingestion
-
-```bash
-python main.py
-```
-
-This will:
-
-* Load PDFs
-* Split text into chunks
-* Generate embeddings
-* Store them in ChromaDB
-
----
-
 ## 💾 Persistent Vector Database
 
-* The vector database is stored locally (e.g., `db/` folder).
+* The vector database is stored locally.
 * Once created, embeddings are reused.
 * Avoids recomputation on every run.
-
 ---
 
 ## 🔍 Querying
@@ -90,7 +66,7 @@ This will:
 You can retrieve relevant chunks using semantic search:
 
 ```python
-results = retriever.query("your question here")
+vectorstore.similarity_search("What is OneLake in simple term?", k=3)
 ```
 
 ---
@@ -126,24 +102,3 @@ Stores embeddings locally so:
 
 * No need to reprocess documents
 * Faster subsequent runs
-
----
-
-## 🛠️ Future Improvements
-
-* Add LLM integration for answer generation
-* API endpoint for querying
-* UI for document upload and chat
-* Support for multiple file formats
-
----
-
-## 🤝 Contribution
-
-Feel free to fork this repository and improve it. Pull requests are welcome.
-
----
-
-## 📄 License
-
-This project is open-source and available under the MIT License.
